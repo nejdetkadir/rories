@@ -8,12 +8,12 @@
         .navbar-collapse.offcanvas-collapse(:class="{'open' : offcanvasOpened}")
           ul.navbar-nav.me-auto.mb-2.mb-lg-0.fw-bold.text-white
             li.nav-item
-              nuxt-link.nav-link(to="/") Home
+              nuxt-link.nav-link(@click.native="offcanvasOpened=false" to="/") Home
             li.nav-item
-              nuxt-link.nav-link(to="/users") Sign in/up
+              nuxt-link.nav-link(@click.native="offcanvasOpened=false" to="/users") Sign in/up
             li.nav-item.dropdown
-              a#userDropdown.nav-link.dropdown-toggle(href='#' data-bs-toggle='dropdown' aria-expanded='false') Profile
-              ul.dropdown-menu.dropdown-dark(aria-labelledby='userDropdown')
+              a#userDropdownHeader.nav-link.dropdown-toggle(href='#' data-bs-toggle='dropdown' aria-expanded='false') Profile
+              ul.dropdown-menu.dropdown-dark(aria-labelledby='userDropdownHeader')
                 li
                   a.dropdown-item(href='#') Action
                 li
@@ -25,7 +25,7 @@
             button.btn.btn-outline-danger.btn-sm(type='submit') Search
     .nav-scroller.bg-body.shadow-sm
       nav.nav.nav-underline(aria-label='Secondary navigation')
-        nuxt-link.nav-link(to="/genres/1" v-for="i in 20" :key="15") Genre {{i}}
+        nuxt-link.nav-link(to="/genres/1" v-for="i in 20" :key="i") Genre {{i}}
     main.container
       Nuxt
 </template>

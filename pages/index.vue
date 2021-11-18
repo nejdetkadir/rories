@@ -1,5 +1,5 @@
 <template lang="pug">
-  Tutorial
+  h1 homepage
 </template>
 <script>
 export default {}
