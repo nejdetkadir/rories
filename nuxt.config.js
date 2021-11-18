@@ -41,6 +41,7 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    '@nuxtjs/toast',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -55,5 +56,11 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+
+  publicRuntimeConfig: {
+    axios: {
+      baseURL: 'https://rories-api.herokuapp.com/api/v1'
+    }
+  },
 }
