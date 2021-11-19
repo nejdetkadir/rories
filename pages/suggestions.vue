@@ -65,11 +65,3 @@ export default {
       i.fas.fa-info-circle.fs-1
       p If you follow somethings (writers/stars/directors/movies or genres), the system will suggest movies for you.
 </template>
-
-<style>
-h1.gradient-title{
-  background: -webkit-linear-gradient(#DC3545, #560000);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-</style>

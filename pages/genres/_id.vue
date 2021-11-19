@@ -45,7 +45,7 @@ export default {
       }
     },
     async getMoreMovies() {
-      if (this.genre.movies.length % 24 === 0) {
+      if (this.genre.movies.length % 24 === 0 && this.$route.name === 'genres-id') {
         try {
           const res = await this.$axios.get(`/genres/${this.$route.params.id}?page=${(this.genre.movies.length / 24) + 1}`, {
             headers: {
