@@ -1,12 +1,12 @@
 import {authErrorHandler, success} from "~/utils/toast"
 
 export const state = () => ({
-  user: {}
+  current_user: null
 })
 
 export const mutations = {
   setUser(state, data) {
-    state.user = data
+    state.current_user = data
   }
 }
 

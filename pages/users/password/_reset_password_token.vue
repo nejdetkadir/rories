@@ -2,6 +2,7 @@
 import {success, unprocessableEntity} from "~/utils/toast"
 
 export default {
+  middleware: 'authenticated',
   data() {
     return {
       password: '',
