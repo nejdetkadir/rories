@@ -7,6 +7,7 @@
 </template>
 <script>
 export default {
+  middleware: 'authenticated',
   head: {
     bodyAttrs: {
       class: 'users-background'
