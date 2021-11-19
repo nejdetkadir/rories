@@ -1,15 +1,35 @@
 <script>
-import {mapState} from 'vuex'
+import {mapState, mapActions} from 'vuex'
 
 export default {
   data() {
     return {
-      offcanvasOpened: false
+      offcanvasOpened: false,
+      searchValue: ''
     }
   },
   computed: {
     ...mapState('genres', ['genres']),
     ...mapState('users', ['current_user'])
+  },
+  methods: {
+    ...mapActions('movies', ['searchMovie']),
+    onSearchMovie() {
+      if(this.searchValue.length > 0) {
+
+        this.searchMovie({
+          q: {
+            title_cont: this.searchValue
+          }
+        })
+
+        this.searchValue = ''
+
+        if (this.$route.name !== 'search') {
+          this.$router.push('/search')
+        }
+      }
+    }
   }
 }
 </script>
@@ -39,8 +59,8 @@ export default {
                 li
                   a.dropdown-item(href='#') Something else here
           form.d-flex(v-if="current_user")
-            input.form-control.form-control-sm.me-2(type='search' placeholder='Search')
-            button.btn.btn-outline-danger.btn-sm(type='submit') Search
+            input.form-control.form-control-sm.me-2(type='search' v-model="searchValue" placeholder='Search')
+            button.btn.btn-outline-danger.btn-sm(@click.prevent="onSearchMovie") Search
     .nav-scroller.bg-body.shadow-sm(v-if="current_user")
       nav.nav.nav-underline
         nuxt-link.nav-link(:to="'/genres/'+genre.id" v-for="genre in genres" :key="genre.id") {{genre.name}}
