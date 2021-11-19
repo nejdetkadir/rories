@@ -43,7 +43,7 @@ export default {
             button.btn.btn-outline-danger.btn-sm(type='submit') Search
     .nav-scroller.bg-body.shadow-sm(v-if="current_user")
       nav.nav.nav-underline
-        nuxt-link.nav-link(:to="'/genres/1'+genre.id" v-for="genre in genres" :key="genre.id") {{genre.name}}
+        nuxt-link.nav-link(:to="'/genres/'+genre.id" v-for="genre in genres" :key="genre.id") {{genre.name}}
     main.container
       Nuxt
 </template>
