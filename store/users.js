@@ -11,11 +11,12 @@ export const mutations = {
 }
 
 export const actions = {
-  async signIn({commit}, user) {
+  async signIn({commit, dispatch}, user) {
     try {
       const res = await this.$axios.post("/users/sign_in", user)
       
       commit("setUser", {...res.data, token: res.headers.authorization})
+      dispatch("genres/getGenres", null, {root: true}) // get genres
 
       this.$router.push("/home")
       success(this.$toast, "Signed in successfully.")

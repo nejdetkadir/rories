@@ -39,6 +39,14 @@ const success = (toast, message) => {
   })
 }
 
+// error
+const error = (toast, message) => {
+  toast.error(message, {
+    duration : 3000,
+    position: "top-right"
+  })
+}
+
 // authentication error handler
 const authErrorHandler = (toast, response) => {
   if (response.status === 401) {
@@ -50,4 +58,4 @@ const authErrorHandler = (toast, response) => {
   }
 }
 
-module.exports = {authErrorHandler, unprocessableEntity, success}
+module.exports = {authErrorHandler, unprocessableEntity, success, error}

@@ -1,3 +1,19 @@
+<script>
+import {mapState} from 'vuex'
+
+export default {
+  data() {
+    return {
+      offcanvasOpened: false
+    }
+  },
+  computed: {
+    ...mapState('genres', ['genres']),
+    ...mapState('users', ['current_user'])
+  }
+}
+</script>
+
 <template lang="pug">
   div
     nav.navbar.navbar-expand-lg.fixed-top.navbar-dark.bg-dark
@@ -8,10 +24,12 @@
         .navbar-collapse.offcanvas-collapse(:class="{'open' : offcanvasOpened}")
           ul.navbar-nav.me-auto.mb-2.mb-lg-0.fw-bold.text-white
             li.nav-item
-              nuxt-link.nav-link(@click.native="offcanvasOpened=false" to="/") Home
-            li.nav-item
+              nuxt-link.nav-link(@click.native="offcanvasOpened=false" :to="current_user ? '/home' : '/'") Home
+            li.nav-item(v-if="current_user")
+              nuxt-link.nav-link(@click.native="offcanvasOpened=false" to="/suggestions") Suggestions
+            li.nav-item(v-if="!current_user")
               nuxt-link.nav-link(@click.native="offcanvasOpened=false" to="/users") Sign in/up
-            li.nav-item.dropdown
+            li.nav-item.dropdown(v-if="current_user")
               a#userDropdownHeader.nav-link.dropdown-toggle(href='#' data-bs-toggle='dropdown' aria-expanded='false') Profile
               ul.dropdown-menu.dropdown-dark(aria-labelledby='userDropdownHeader')
                 li
@@ -20,25 +38,15 @@
                   a.dropdown-item(href='#') Another action
                 li
                   a.dropdown-item(href='#') Something else here
-          form.d-flex
+          form.d-flex(v-if="current_user")
             input.form-control.form-control-sm.me-2(type='search' placeholder='Search')
             button.btn.btn-outline-danger.btn-sm(type='submit') Search
-    .nav-scroller.bg-body.shadow-sm
-      nav.nav.nav-underline(aria-label='Secondary navigation')
-        nuxt-link.nav-link(to="/genres/1" v-for="i in 20" :key="i") Genre {{i}}
+    .nav-scroller.bg-body.shadow-sm(v-if="current_user")
+      nav.nav.nav-underline
+        nuxt-link.nav-link(:to="'/genres/1'+genre.id" v-for="genre in genres" :key="genre.id") {{genre.name}}
     main.container
       Nuxt
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      offcanvasOpened: false
-    }
-  }
-}
-</script>
 
 <style>
 html,
