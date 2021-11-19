@@ -24,6 +24,7 @@ export default {
         })
 
         this.searchValue = ''
+        this.offcanvasOpened = false
 
         if (this.$route.name !== 'search') {
           this.$router.push('/search')
