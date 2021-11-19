@@ -37,7 +37,7 @@ export default {
       }
     },
     async getMoreSuggestions() {
-      if (this.suggestions.length % 24 === 0) {
+      if (this.suggestions.length % 24 === 0 && this.$route.name === 'suggestions') {
         try {
           const res = await this.$axios.get(`/feed?page=${(this.suggestions.length / 24) + 1}`, {
             headers: {
@@ -59,6 +59,7 @@ export default {
 
 <template lang="pug">
   .row.mt-5.mb-5
+    h1.text-center.mb-3.fw-bold.gradient-title Suggestions
     div(v-if="suggestions.length != 0" v-for="movie in suggestions" :key="movie.id" :class="$device.isDesktop ? 'col-3' : 'col-6'")
       Movie(:movie="movie")
     .alert.alert-info.text-center(v-if="suggestions.length === 0")
