@@ -1,5 +1,6 @@
 <script>
 import {mapState} from "vuex"
+import {error} from "~/utils/toast"
 
 export default {
   middleware: 'unauthenticated',
@@ -36,9 +37,9 @@ export default {
       }
     },
     async getMoreMovies() {
-      if (this.movies.length % 24 === 0) {
+      if (this.genre.movies.length % 24 === 0) {
         try {
-          const res = await this.$axios.get(`/genres/${this.$route.params.id}?page=${(this.movies.length / 24) + 1}`
+          const res = await this.$axios.get(`/genres/${this.$route.params.id}?page=${(this.genre.movies.length / 24) + 1}`
             ,{
               headers: {
                 "Authorization": this.current_user.token,
@@ -48,8 +49,8 @@ export default {
           if (res.data.movies.length > 0) {
             this.genre.movies = this.genre.movies.concat(res.data.movies)
           }
-        } catch (error) {
-          this.$error({ statusCode: 500, message: 'Something went wrong.' })
+        } catch (err) {
+          error(this.$toast, "Something went wrong.")
         }
       }
     }
