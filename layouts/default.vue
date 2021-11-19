@@ -54,11 +54,7 @@ export default {
               a#userDropdownHeader.nav-link.dropdown-toggle(href='#' data-bs-toggle='dropdown' aria-expanded='false') Profile
               ul.dropdown-menu.dropdown-dark(aria-labelledby='userDropdownHeader')
                 li
-                  a.dropdown-item(href='#') Action
-                li
-                  a.dropdown-item(href='#') Another action
-                li
-                  a.dropdown-item(href='#') Something else here
+                  nuxt-link.dropdown-item(@click.native="offcanvasOpened=false" to="/users/edit") Settings
           form.d-flex(v-if="current_user")
             input.form-control.form-control-sm.me-2(type='search' v-model="searchValue" placeholder='Search')
             button.btn.btn-outline-danger.btn-sm(@click.prevent="onSearchMovie") Search

@@ -1,4 +1,4 @@
-import {authErrorHandler, success} from "~/utils/toast"
+import {authErrorHandler, success, unprocessableEntity} from "~/utils/toast"
 
 export const state = () => ({
   current_user: null
@@ -36,6 +36,19 @@ export const actions = {
 
     } catch (error) {
       authErrorHandler(this.$toast, error.response)
+    }
+  },
+  async updateUser({state, commit}, user) {
+    try {
+      const res = await this.$axios.patch("/users", user, {
+        headers: {
+          "Authorization" : state.current_user.token,
+        }
+      })
+
+      commit("setUser", {...res.data, token: state.current_user.token})
+    } catch (err) {
+      unprocessableEntity(this.$toast, err.response.data)
     }
   }
 }
