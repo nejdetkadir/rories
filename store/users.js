@@ -25,11 +25,12 @@ export const actions = {
       authErrorHandler(this.$toast, error.response)
     }
   },
-  async signUp({commit}, user) {
+  async signUp({commit, dispatch}, user) {
     try {
       const res = await this.$axios.post("/users", user)
       
       commit("setUser", {...res.data, token: res.headers.authorization})
+      dispatch("genres/getGenres", null, {root: true}) // get genres
 
       this.$router.push("/home")
       success(this.$toast, "Welcome! You have signed up successfully.")
