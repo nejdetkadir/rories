@@ -64,4 +64,7 @@ export default {
       baseURL: 'https://rories-api.herokuapp.com/api/v1'
     }
   },
+
+  // Loading Bar
+  loading: '~/components/LoadingBar.vue',
 }
