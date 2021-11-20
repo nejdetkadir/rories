@@ -153,4 +153,12 @@ body {
   border-color: #DC3545;
   box-shadow: none;
 }
+
+.mobile-row{
+  --bs-gutter-x: 0.7rem !important;
+}
+
+.fw-xxsmall{
+  font-size: xx-small;
+}
 </style>

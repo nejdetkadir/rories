@@ -16,7 +16,7 @@ export default {
       .card-body.text-white.text-center
         h5.card-text.fw-bold.fst-italic {{movie.title}} ({{movie.released_at}})
         .d-flex.justify-content-center
-          .d-flex(v-for="(genre, index) in movie.genres" :key="genre.id" :class="$device.isDesktop ? 'fw-bold' : 'fw-smaller'")
+          .d-flex(v-for="(genre, index) in movie.genres" :key="genre.id" :class="$device.isDesktop ? 'fw-bold' : 'fw-xxsmall'")
             .fw-bold(v-if="index > 0") &nbsp;|&nbsp;
             nuxt-link.genre-link(:to="'/genres/' + genre.id") {{genre.name}}
 </template>

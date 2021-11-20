@@ -58,7 +58,7 @@ export default {
 </script>
 
 <template lang="pug">
-  .row.mt-5.mb-5
+  .row.mt-5.mb-5(:class="{'mobile-row' : !$device.isDesktop}")
     div(v-for="movie in movies" :key="movie.id" :class="$device.isDesktop ? 'col-3' : 'col-6'")
       Movie(:movie="movie")
 </template>

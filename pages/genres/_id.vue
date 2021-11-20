@@ -105,7 +105,7 @@ export default {
 </script>
 
 <template lang="pug">
-  .row.mt-2.mb-5
+  .row.mt-2.mb-5(:class="{'mobile-row' : !$device.isDesktop}")
     .d-block.text-center
       h1.text-center.mb-3.mt-5.fw-bold.gradient-title {{genre.genre.name}}
       button.btn.btn-sm.text-white(@click.prevent="followAction" :class="{'btn-outline-success' : !isFollowingGenre, 'btn-outline-danger' : isFollowingGenre}")

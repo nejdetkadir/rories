@@ -58,7 +58,7 @@ export default {
 </script>
 
 <template lang="pug">
-  .row.mt-5.mb-5
+  .row.mt-5.mb-5(:class="{'mobile-row' : !$device.isDesktop}")
     h1.text-center.mb-3.fw-bold.gradient-title Suggestions
     div(v-if="suggestions.length != 0" v-for="movie in suggestions" :key="movie.id" :class="$device.isDesktop ? 'col-3' : 'col-6'")
       Movie(:movie="movie")
