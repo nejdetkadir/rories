@@ -14,6 +14,7 @@ export default {
   },
   methods: {
     ...mapActions('movies', ['searchMovie']),
+    ...mapActions('users', ['signOut']),
     onSearchMovie() {
       if(this.searchValue.length > 0) {
 
@@ -30,6 +31,11 @@ export default {
           this.$router.push('/search')
         }
       }
+    },
+    onSignOut() {
+      this.offcanvasOpened = false
+
+      this.signOut()
     }
   }
 }
@@ -55,6 +61,8 @@ export default {
               ul.dropdown-menu.dropdown-dark(aria-labelledby='userDropdownHeader')
                 li
                   nuxt-link.dropdown-item(@click.native="offcanvasOpened=false" to="/users/edit") Settings
+                li
+                  a.dropdown-item(@click.prevent="onSignOut" href="#") Sign Out
           form.d-flex(v-if="current_user")
             input.form-control.form-control-sm.me-2(type='search' v-model="searchValue" placeholder='Search')
             button.btn.btn-outline-danger.btn-sm(@click.prevent="onSearchMovie") Search

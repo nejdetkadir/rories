@@ -86,7 +86,7 @@ export default {
 
 <template lang="pug">
   .row.mt-5.mb-5
-    div(:class="{'col-6' : $device.isDesktop, 'col-12' : !$device.isDesktop}")
+    .text-center(:class="{'col-6' : $device.isDesktop, 'col-12' : !$device.isDesktop}")
       img(:src="movie.cover.url" :alt="movie.title" width="100%")
     .ps-2.pe-2(:class="{'col-6' : $device.isDesktop, 'col-12 mt-4' : !$device.isDesktop}")
       h1.text-white.fw-bold {{movie.title}}
@@ -107,7 +107,7 @@ export default {
       .d-flex.justify-content-between.align-items-center.mt-2
         h5.text-white Minutes
         .d-flex.justify-content-between.align-items-center
-          .fs-4.text-white +{{movie.minutes}}
+          .fs-4.text-white {{movie.minutes}}
       .d-flex.justify-content-between.align-items-center.mt-2
         h5.text-white {{movie.genres.length > 1 ? 'Genres' : 'Genre'}}
         .d-flex.justify-content-between.align-items-center
@@ -145,7 +145,7 @@ export default {
           | {{isFollowingMovie ? 'Unfollow' :'Follow'}}&nbsp;
           i.fas.text-white(:class="{'fa-thumbs-up' : !isFollowingMovie, 'fa-thumbs-down' : isFollowingMovie, }")
         a.btn.btn-outline-primary.btn-sm(:href="movie.trailer.url" v-if="movie.trailer.url") Watch Trailer
-        a.btn.btn-outline-warning.btn-sm(:href="'https://www.imdb.com/title/' + movie.imdb_id" target="_blank") Browse From IMDb
+        a.btn.btn-outline-warning.btn-sm(:href="'https://www.imdb.com/title/' + movie.imdb_id" target="_blank") Browse on IMDb
 </template>
 
 <style>

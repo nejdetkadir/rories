@@ -1,4 +1,4 @@
-import {authErrorHandler, success, unprocessableEntity} from "~/utils/toast"
+import {authErrorHandler, success, unprocessableEntity, error} from "~/utils/toast"
 
 export const state = () => ({
   current_user: null
@@ -7,6 +7,9 @@ export const state = () => ({
 export const mutations = {
   setUser(state, data) {
     state.current_user = data
+  },
+  destroyUser(state) {
+    state.current_user = null
   }
 }
 
@@ -48,8 +51,29 @@ export const actions = {
       })
 
       commit("setUser", {...res.data, token: state.current_user.token})
+
     } catch (err) {
       unprocessableEntity(this.$toast, err.response.data)
+    }
+  },
+  async signOut({state, commit}) {
+    try {
+      await this.$axios.delete("/users/sign_out", {
+        headers: {
+          "Authorization" : state.current_user.token,
+        }
+      })
+
+      // clear vuex
+      commit("destroyUser")
+      commit("genres/destroyGenres", null, {root: true})
+      commit("movies/destroyResults", null, {root: true})
+
+      this.$router.push("/")
+      success(this.$toast, "Signed out successfully.")
+
+    } catch (err) {
+      error("Somethin went wrong.")
     }
   }
 }

@@ -7,6 +7,9 @@ export const state = () => ({
 export const mutations = {
   setGenres(state, genres) {
     state.genres = genres
+  },
+  destroyGenres(state) {
+    state.genres = []
   }
 }
 

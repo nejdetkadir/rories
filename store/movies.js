@@ -7,6 +7,9 @@ export const state = () => ({
 export const mutations = {
   setResults(state, results) {
     state.results = results
+  },
+  destroyResults(state) {
+    state.results = []
   }
 }
 
