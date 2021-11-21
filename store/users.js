@@ -51,6 +51,7 @@ export const actions = {
       })
 
       commit("setUser", {...res.data, token: state.current_user.token})
+      success(this.$toast, "Your account has been updated successfully.")
 
     } catch (err) {
       unprocessableEntity(this.$toast, err.response.data)
